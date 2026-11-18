@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6d4aff">
+    <title>Smart Quiz Indonesia</title>
+    <link rel="stylesheet" href="kuis.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="brand">Smart Quiz kids</div>
+        <span>Indonesia Education</span>
+    </header>
+
+    <main class="container">
+
+        <!-- MENU UTAMA -->
+        <section id="menuPage" class="page active">
+            <div class="hero">
+                <span class="tag">LEARNING PLATFORM</span>
+                <h1>MARI LIHAT PEMAHAMAN KITA </h1>
+                <p>
+                    Pilih mata pelajaran favoritmu ,dan tentukan tingkat tingkat kesulitan sesuai tingkat sekolah mu,
+                    dan buktikan kemampuan terbaikmu.
+                </p>
+            </div>
+
+            <div class="panel">
+                <h2>1. Pilih Mata Pelajaran</h2>
+                <p class="hint">
+                    Pilih minimal 1 dan maksimal 2 mata pelajaran.
+                    Setiap mata pelajaran memiliki 25 soal dan jangan curang!!!.
+                </p>
+
+                <div class="subjects">
+                    <label class="subject">
+                        <input type="checkbox" name="subject"
+                               value="Matematika">
+                        <span>📐</span>
+                        <b>Matematika</b>
+                    </label>
+
+                    <label class="subject">
+                        <input type="checkbox" name="subject"
+                               value="IPA">
+                        <span>🔬</span>
+                        <b>IPA</b>
+                    </label>
+
+                    <label class="subject">
+                        <input type="checkbox" name="subject"
+                               value="Bahasa Indonesia">
+                        <span>📚</span>
+                        <b>Bahasa Indonesia</b>
+                    </label>
+
+                    <label class="subject">
+                        <input type="checkbox" name="subject"
+                               value="PKN">
+                        <span>⚖️</span>
+                        <b>PKN</b>
+                    </label>
+
+                    <label class="subject">
+                        <input type="checkbox" name="subject"
+                               value="Bahasa Arab">
+                        <span>🕌</span>
+                        <b>Bahasa Arab</b>
+                    </label>
+                </div>
+
+                <div class="selection-info">
+                    <span>Mata pelajaran dipilih:</span>
+                    <strong id="selectedCount">0 / 2</strong>
+                </div>
+
+                <h2>2. Tingkat Kesulitan</h2>
+
+                <div class="difficulty">
+                    <label>
+                        <input type="radio" name="level" value="easy">
+                        <span class="easy">
+                            Easy
+                            <small>SD 1–4</small>
+                            <small>50 detik/soal</small>
+                        </span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="level"
+                               value="normal" checked>
+                        <span class="normal">
+                            Normal
+                            <small>SD 5–6</small>
+                            <small>50 detik/soal</small>
+                        </span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="level" value="medium">
+                        <span class="medium">
+                            Medium
+                            <small>SMP</small>
+                            <small>30 detik/soal</small>
+                        </span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="level" value="hard">
+                        <span class="hard">
+                            Hard
+                            <small>SMA</small>
+                            <small>20 detik/soal</small>
+                        </span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="level"
+                               value="extreme">
+                        <span class="extreme">
+                            Extreme
+                            <small>Perguruan Tinggi</small>
+                            <small>25 detik/soal</small>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="quiz-preview">
+                    <div>
+                        <span>Jumlah soal</span>
+                        <strong id="previewQuestions">0 soal</strong>
+                    </div>
+                    <div>
+                        <span>Waktu per soal</span>
+                        <strong id="previewTime">50 detik</strong>
+                    </div>
+                </div>
+
+                <button id="startBtn" class="primary-btn">
+                    Mulai Kuis →
+                </button>
+
+                <p id="menuError" class="error"
+                   role="alert"></p>
+            </div>
+        </section>
+
+
+        <!-- HALAMAN KUIS -->
+        <section id="quizPage" class="page">
+
+            <div class="quiz-top">
+                <div>
+                    <span class="tag">SMART QUIZ</span>
+                    <h2 id="quizTitle">Kuis</h2>
+                </div>
+
+                <div class="counter">
+                    <span id="questionNumber">1 / 25</span>
+                </div>
+            </div>
+
+            <div class="progress">
+                <div id="progressBar"></div>
+            </div>
+
+            <div class="quiz-info">
+                <span id="levelInfo">Normal</span>
+                <span id="totalQuestions">25 Soal</span>
+            </div>
+
+            <!-- TIMER -->
+            <div class="timer-container" id="timerContainer">
+                <span>⏱️ Waktu tersisa</span>
+                <strong id="timer" aria-live="off">00:50</strong>
+            </div>
+
+            <!-- INFORMASI MAPEL -->
+            <div class="quiz-subject-info">
+                <span id="subjectLabel" class="tag">
+                    Matematika
+                </span>
+
+                <span id="subjectProgress">
+                    Mapel 1 dari 1
+                </span>
+            </div>
+
+            <div class="panel question-panel">
+
+                <div class="question-header">
+                    <span id="questionIndex">SOAL 1</span>
+                    <span id="questionPoints">4 Poin</span>
+                </div>
+
+                <h2 id="questionText">
+                    Pertanyaan akan muncul di sini.
+                </h2>
+
+                <div id="answerOptions" class="answers">
+                    <!-- Pilihan jawaban dibuat melalui JavaScript -->
+                </div>
+
+                <p id="answerMessage"
+                   class="answer-message"
+                   aria-live="polite"></p>
+
+                <button id="nextBtn" class="primary-btn" disabled>
+                    Soal Berikutnya →
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- HALAMAN HASIL -->
+        <section id="resultPage" class="page">
+
+            <div class="result-panel">
+
+                <div class="result-icon">🏆</div>
+
+                <span class="tag">HASIL KUIS</span>
+
+                <h1 id="resultTitle">Kuis Selesai!</h1>
+
+                <div class="score-circle">
+                    <span id="finalScore">0</span>
+                    <small>Nilai Akhir</small>
+                </div>
+
+                <!-- STATISTIK KESELURUHAN -->
+                <div class="result-stats">
+
+                    <div>
+                        <strong id="correctCount">0</strong>
+                        <span>Benar</span>
+                    </div>
+
+                    <div>
+                        <strong id="wrongCount">0</strong>
+                        <span>Salah</span>
+                    </div>
+
+                    <div>
+                        <strong id="totalAnswered">25</strong>
+                        <span>Total Soal</span>
+                    </div>
+
+                </div>
+
+                <p id="resultDescription">
+                    Hasil kuis kamu akan ditampilkan di sini.
+                </p>
+
+                <!-- HASIL PER MATA PELAJARAN -->
+                <div id="subjectResults"
+                     class="subject-results">
+
+                    <!-- Diisi otomatis oleh JavaScript -->
+
+                </div>
+
+                <!-- RINGKASAN WAKTU -->
+                <div class="time-summary">
+                    <span>Total waktu pengerjaan</span>
+                    <strong id="totalTime">00:00</strong>
+                </div>
+
+                <button id="homeBtn" class="primary-btn">
+                    ↩ Kembali ke Menu Utama
+                </button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 Smart Quiz Indonesia |
+            Belajar dan Berprestasi
+        </p>
+    </footer>
+
+    <script src="kuis.js"></script>
+</body>
+</html>
